@@ -1,6 +1,6 @@
 <?php
 
-require_once './env.php';
+require_once 'env.php';
 // ini_set('display_errors', true);
 function connect()
 {
@@ -18,13 +18,11 @@ function connect()
         // フェッチモード 配列を必ずkeyとvalueで返す
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
       ]);
-      echo '成功です！';
+      return $pdo;
   } catch(PDOExeption $e) {
     echo '接続失敗です！' . $e->getMessage();
     exit();
   }
 }
-
-echo connect();
 
 ?>
