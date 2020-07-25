@@ -1,9 +1,19 @@
 <?php
 
+session_start();
 require_once '../classes/UserLogic.php';
 
 //エラーメッセージ
 $err = [];
+
+$token = filter_input(INPUT_POST, 'csrf_token');
+// トークンがない、もしくは一致しない場合、処理を中止
+if (!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
+  exit('不正なリクエスト');
+}
+
+// 二重送信を以下のことで防げる
+unset($_SESSION['csrf_token']);
 
 // バリデーションの作成
   // postで受け取ったデータを表示する
