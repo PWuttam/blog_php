@@ -95,4 +95,22 @@ class UserLogic
       return false;
     }
   }
+
+  /**
+   * ログインチェック
+   * @param void
+   * @return bool $result
+   */
+  public static function checkLogin()
+  {
+    $result = false;
+
+    // セッションにログインユーザが入っていなかったらfalse
+    if (isset($_SESSION['login_user']) && $_SESSION['login_user']['id'] > 0) {
+      return $result = true;
+    }
+
+    return $result;
+  }
+
 }

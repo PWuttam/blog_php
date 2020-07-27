@@ -1,6 +1,21 @@
 <?php
+session_start();
 
 require_once '../functions.php';
+require_once '../classes/UserLogic.php';
+
+// ログインしているか判定
+// していたらマイページへリダイレクト
+$result = UserLogic::checkLogin();
+if($result) {
+  header('Location: mypage.php');
+  return;
+}
+
+// 三項演算子
+$login_err = isset($_SESSION['login_err']) ? $_SESSION['login_err'] : null;
+// 下記は二度目に入るとセッションが消える機能
+unset($_SESSION['login_err']);
 
 ?>
 <!DOCTYPE html>
@@ -12,6 +27,9 @@ require_once '../functions.php';
 </head>
 <body>
   <h2>ユーザ登録フォーム</h2>
+  <?php if (isset($login_err)) : ?>
+      <p><?php echo $login_err; ?></p>
+  <?php endif; ?>
   <form action="register.php" method="POST">
     <p>
       <label for="username">ユーザ名：</label>
