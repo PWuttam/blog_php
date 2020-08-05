@@ -28,7 +28,13 @@ $login_user = $_SESSION['login_user'];
   <h2>マイページ</h2>
   <p>ログインユーザ:<?php echo h($login_user['name']) ?></p>
   <p>メールアドレス:<?php echo h($login_user['email']) ?></p>
-  <a href="./login.php">ログアウト</a>
+
+  <!-- リンクタグの場合リンクを直に打つとログアウト可能 -->
+  <!-- だからformでPOSTにしている -->
+  <!-- logoutが入っていれば処理できるように設定 -->
+  <form action="logout.php" method="POST">
+    <input type="submit" name="logout" value="ログアウト">
+  </form>
   
 </body>
 </html>
