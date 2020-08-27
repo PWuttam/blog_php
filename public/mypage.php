@@ -28,6 +28,8 @@ $login_user = $_SESSION['login_user'];
   <h2>マイページ</h2>
   <p>ログインユーザ:<?php echo h($login_user['name']) ?></p>
   <p>メールアドレス:<?php echo h($login_user['email']) ?></p>
+  <a href="../index.php">ブログ一覧へ</a><br>
+  <br>
   <a href="./login.php">ログアウト</a>
   
 </body>
