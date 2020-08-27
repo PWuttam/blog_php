@@ -113,4 +113,15 @@ class UserLogic
     return $result;
   }
 
+  /**
+   * ログアウト処理
+   */
+  public static function logout()
+  {
+    // セッション変数を全て解除する
+    $_SESSION = array();
+    // 最終的に、セッションを破壊する
+    session_destroy();
+  }
+
 }
